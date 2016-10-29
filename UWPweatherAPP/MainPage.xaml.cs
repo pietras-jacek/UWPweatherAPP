@@ -11,6 +11,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -25,6 +26,15 @@ namespace UWPweatherAPP
         public MainPage()
         {
             this.InitializeComponent();
+        }
+
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {
+            RootObject myWeather = await OpenWeatherMapAgent.GetWeather(54.0, 18.0);
+
+            ResultTextBlock.Text = myWeather.name + " - " + ((int)myWeather.main.temp).ToString() + " - " + myWeather.weather[0].description;
+            string icon = String.Format("http://openweathermap.org/img/w/{0}.png", myWeather.weather[0].icon);
+            ResultImage.Source = new BitmapImage(new Uri(icon, UriKind.Absolute));
         }
     }
 }
