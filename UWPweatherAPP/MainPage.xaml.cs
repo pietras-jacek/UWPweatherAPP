@@ -30,7 +30,12 @@ namespace UWPweatherAPP
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            RootObject myWeather = await OpenWeatherMapAgent.GetWeather(54.0, 18.0);
+            var position = await LocationManager.GetPosition();
+
+            RootObject myWeather = 
+                await OpenWeatherMapAgent.GetWeather(
+                    position.Coordinate.Latitude, 
+                    position.Coordinate.Longitude);
 
             ResultTextBlock.Text = myWeather.name + " - " + ((int)myWeather.main.temp).ToString() + " - " + myWeather.weather[0].description;
             string icon = String.Format("ms-appx:///Assets/Weather/{0}.png", myWeather.weather[0].icon);
