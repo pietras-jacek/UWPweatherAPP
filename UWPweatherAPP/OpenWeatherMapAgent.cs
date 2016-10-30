@@ -15,7 +15,8 @@ namespace UWPweatherAPP
         public async static Task<RootObject> GetWeather(double lat, double lon)
         {
             var http = new HttpClient();
-            var response = await http.GetAsync("http://api.openweathermap.org/data/2.5/weather?lat=54&lon=18&appid=92950373bdc96ef2546a5f529d47ffbb&units=metric");
+            var url = String.Format("http://api.openweathermap.org/data/2.5/weather?lat={0}&lon={1}&units=metric", lat, lon) + "&appid=92950373bdc96ef2546a5f529d47ffbb";
+            var response = await http.GetAsync(url);
             var result = await response.Content.ReadAsStringAsync();
             var serializer = new DataContractJsonSerializer(typeof(RootObject));
 
@@ -30,7 +31,7 @@ namespace UWPweatherAPP
     public class Coord
     {
         [DataMember]
-        public int lon { get; set; }
+        public double lon { get; set; }
 
         [DataMember]
         public double lat { get; set; }

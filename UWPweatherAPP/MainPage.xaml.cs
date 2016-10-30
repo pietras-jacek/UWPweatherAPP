@@ -32,10 +32,11 @@ namespace UWPweatherAPP
         {
             var position = await LocationManager.GetPosition();
 
+            var lat = position.Coordinate.Latitude;
+            var lon = position.Coordinate.Longitude;
+
             RootObject myWeather = 
-                await OpenWeatherMapAgent.GetWeather(
-                    position.Coordinate.Latitude, 
-                    position.Coordinate.Longitude);
+                await OpenWeatherMapAgent.GetWeather(lat, lon);
 
             ResultTextBlock.Text = myWeather.name + " - " + ((int)myWeather.main.temp).ToString() + " - " + myWeather.weather[0].description;
             string icon = String.Format("ms-appx:///Assets/Weather/{0}.png", myWeather.weather[0].icon);
