@@ -7,9 +7,13 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <StackPanel Background="Beige">
-        <Button Content="Sprawdź pogodę" Click="Button_Click"></Button>
-        <TextBlock Name="ResultTextBlock"></TextBlock>
-        <Image Name="ResultImage" Width="200" Height="200"></Image>
+    <StackPanel Background="Bisque">
+        <StackPanel VerticalAlignment="Center">
+            <Image Name="ResultImage" Width="200" Height="200" HorizontalAlignment="Center" />
+            <TextBlock Name="ResultTextBlock" FontSize="52" Foreground="White" HorizontalAlignment="Center"/>
+            <TextBlock Name="DescTextBlock" FontSize="36" Foreground="White" HorizontalAlignment="Center"/>
+            <TextBlock Name="LocationTextBlock" FontSize="24" Foreground="White" HorizontalAlignment="Center" TextWrapping="Wrap"/>
+            <Button Content="Sprawdź pogodę" Click="Button_Click" HorizontalAlignment="Center"></Button>
+        </StackPanel>
     </StackPanel>
 </Page>
